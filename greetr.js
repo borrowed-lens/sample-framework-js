@@ -6,13 +6,13 @@
 var supportedLangs = ['en', 'es'];
 
 var formalGreetings = {
-    en: 'Greetings ',
-    es: 'Saludos '
+    en: 'greetings ',
+    es: 'saludos '
 }
 
 var casualGreetings = {
-    en: 'Hello ',
-    es: 'Hola '
+    en: 'hello ',
+    es: 'hola '
 }
 var formalGreeting = function(firstname, lastname, language) {
     return formalGreetings[language] + firstname + ' ' + lastname;
@@ -22,7 +22,7 @@ var casualGreeting = function(firstname, language) {
 }
 var validateLang = function(lang) {
     if(supportedLangs.indexOf(lang) === -1) {
-        throw 'Language not supported'
+        throw 'language not supported'
     }
 }
 Greetr.prototype = {
@@ -39,13 +39,29 @@ Greetr.prototype = {
             console.log(casualGreeting(this.firstname, this.language));
         }
         return this;
+    },
+    addtoHTML: function(selector, formal) {
+        if(!$) {
+            throw "jQuery not found"
+        }
+        if(!selector) {
+            throw "please add a selector"
+        }
+        if(formal) {
+            $(selector).html(formalGreeting(this.firstname, this.lastname, this.language))
+        } else {
+            $(selector).html(casualGreeting(this.firstname, this.language))
+        }
+        return this;
     }
 }
 
 Greetr.init = function (firstname, lastname, language) {
+    console.log("Greetr.init -> language", language)
     this.firstname = firstname || '';
     this.lastname = lastname || '';
     this.language = language || 'en';
+    validateLang(this.language);
 };
 
 Greetr.init.prototype = Greetr.prototype;

@@ -1,0 +1,5 @@
+node_modules/
+cert.jpg
+cert.pdf
+.vscode/
+package-lock.json

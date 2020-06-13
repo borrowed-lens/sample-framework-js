@@ -28,3 +28,12 @@
 
 var greeting = Greetr('Vivek', 'Prasad').greet(false).setLang('es').greet(false)
 console.log('Person -> greeting', greeting);
+
+$("#greet").click(function() {
+    $("#selector-div").hide();
+    let language = $('#language').val();
+    Greetr('vivek', 'prasad', language).addtoHTML('#greeting', true).setLang('es').addtoHTML('#greeting1', false);
+})
+
+
+// Greetr('vivek', 'prasad').addtoHTML('#greeting', true).setLang('es').addtoHTML('#greeting1', false);
